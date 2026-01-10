@@ -148,9 +148,11 @@ body {
 
 /* 5. ESTRUCTURA DE SECCIONES (OCULTAS DURANTE VIDEO) */
 .block-section {
-    width: 95%;
+    width: 90%; /* Bajamos un poco para dar aire a los bordes */
     max-width: 800px;
-    margin: 60px auto;
+    margin: 40px auto;
+    overflow: hidden; /* Evita que los giros de los paneles estiren la pantalla */
+    box-sizing: border-box;
 }
 
 /* Clase para PC: oculta contenido mientras el video corre */
@@ -259,14 +261,16 @@ body {
 .rsvp-panel {
     display: flex;
     flex-direction: column;
-    align-items: center;    /* CENTRA TODO EL CONTENIDO INTERNO (¡POW!, TEXTO, BOTÓN) */
+    align-items: center;
     text-align: center;
-    padding: 40px;
+    padding: 30px 15px; /* Menos padding lateral en móvil */
     background: white;
     border: 5px solid black;
-    box-shadow: 15px 15px 0px rgba(0,0,0,0.2);
-    width: 90%;             /* Responsive en móviles */
-    max-width: 800px;       /* Tamaño ideal en PC */
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.2);
+    width: 100%;           /* Que use el 100% del contenedor padre */
+    max-width: 800px;
+    margin: 0 auto;        /* Centrado */
+    box-sizing: border-box; /* Fundamental para que el borde no sume ancho */
 }
 
 /* El botón con la animación */
@@ -304,19 +308,35 @@ body {
     display: none; 
     position: fixed;
     top: 0; left: 0;
-    width: 100%; height: 100%;
+    width: 100%; 
+    height: 100%;
     background-color: rgba(0,0,0,0.85);
     z-index: 9999;
+    
+    /* Agregamos esto para centrar el contenido */
+    justify-content: center;
+    align-items: center;
 }
+
 .modal-content {
     background: white;
-    margin: 10% auto;
-    padding: 35px;
+    /* Eliminamos el margin: 10% auto */
+    padding: 25px;
     border: 6px solid black;
-    width: 90%;
-    max-width: 450px;
+    width: 85%;      /* Un poco más angosto para que respire en móvil */
+    max-width: 400px;
     position: relative;
+    box-sizing: border-box;
+    max-height: 90vh; /* Evita que el modal sea más alto que la pantalla */
+    overflow-y: auto; /* Permite scroll dentro del modal si es necesario */
 }
+
+/* Clase que usaremos en JS para bloquear el scroll del fondo */
+.no-scroll {
+    overflow: hidden !important;
+    height: 100vh !important;
+}
+
 .close { position: absolute; top: 5px; right: 15px; font-size: 35px; cursor: pointer; }
 
 .comic-form {
