@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boda: Anthonny & Sheily</title>
+
+    <link rel="icon" type="image/png" href="assets/imagenes/favicon.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="no-scroll">
+
+    <audio id="bgMusic" loop>
+        <source src="assets/audio/marvelbgsound.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="startScreen" class="start-screen">
+        <div class="start-content">
+            <div class="onomatopoeia pulse">¡CLICK!</div>
+            <button id="btnStart" class="btn-start-marvel btn-shake">INICIAR MISIÓN</button>
+            <p class="comic-text-mini">ACTIVA EL SONIDO PARA UNA MEJOR EXPERIENCIA</p>
+        </div>
+    </div>
+
+    <header class="portada-video" id="introContainer">
+        <div class="video-container">
+            <video playsinline id="bgVideo" poster="assets/imagenes/fondo.jpg">
+                <source src="assets/video/version_final.mp4" type="video/mp4">
+            </video>
+        </div>
+        
+        <div class="header-content-overlay" id="introText">
+            <h1>¡LA ALIANZA DEL SIGLO!</h1>
+            <h2>ANTHONNY & SHEILY</h2>
+            <p class="scroll-msg pulse">DESLIZA PARA INICIAR LA MISIÓN</p>
+        </div>
+    </header>
+
+    <section class="block-section section-hidden">
+        <div class="comic-subgrid">
+            <div class="panel">
+                <div class="bubble left">¡TODO EMPEZÓ AQUÍ!</div>
+                <img src="assets/imagenes/imagen1.png" alt="Historia 1">
+            </div>
+            <div class="panel"><img src="assets/imagenes/imagen2.png"></div>
+            <div class="panel">
+                <div class="caption">COMPARTIENDO TIEMPO JUNTOS</div>
+                <img src="assets/imagenes/imagen3.png">
+            </div>
+            <div class="panel">
+                <div class="caption">LA PROPUESTA</div>
+                <img src="assets/imagenes/imagen4.png">
+            </div>
+        </div>
+    </section>
+
+    <section class="block-section section-hidden">
+        <div class="comic-subgrid">
+            <div class="panel">
+                <div class="caption">EL COMPROMISO</div>
+                <img src="assets/imagenes/imagen5.png">
+            </div>
+            <div class="panel tall">
+                <div class="bubble right">¡MISIÓN BODA EN CURSO!</div>
+                <img src="assets/imagenes/imagen6.png">
+            </div>
+        </div>
+    </section>
+
+    <section class="block-section section-hidden">
+        <div class="panel timer-block">
+            <div class="caption">CONTEO REGRESIVO</div>
+            <div id="countdown" class="timer-display">
+                <div class="time-box"><span id="days">00</span><small>DÍAS</small></div>
+                <div class="time-box"><span id="hours">00</span><small>HRS</small></div>
+                <div class="time-box"><span id="minutes">00</span><small>MIN</small></div>
+                <div class="time-box"><span id="seconds">00</span><small>SEG</small></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="block-section section-hidden">
+        <div class="panel location-panel">
+            <div class="caption top-right">CUARTEL GENERAL</div>
+            <div class="loc-container">
+                <div class="loc-text">
+                    <h3>SALÓN COMUNAL SAN FRANCISCO DE DOS RÍOS</h3>
+                    <p>Tr.49 San Francisco de Dos Ríos, San José</p>
+                    <p class="sub-text">¡Prepara tu mejor traje!</p>
+                </div>
+                <div class="loc-buttons">
+                    <a href="https://maps.app.goo.gl/4kWraqiFHdxNYzJ38" target="_blank" class="btn-nav btn-maps">GOOGLE MAPS</a>
+                    <a href="https://www.waze.com/en/live-map/directions/cr/san-jose/san-jose/salon-comunal-san-francisco-de-dos-rios?place=ChIJoZZhRabjoI8Roi_Fe6FMIfY" target="_blank" class="btn-nav btn-waze">WAZE</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="block-section rsvp-area section-hidden">
+        <div class="panel rsvp-panel">
+            <div class="onomatopoeia" style="font-family: 'Bangers', cursive; font-size: 4rem; color: var(--marvel-red); text-shadow: 3px 3px 0px black;">¡POW!</div>
+            <p class="comic-text-bold">¿TE UNIRÁS A LA BATALLA?</p>
+            <button id="openModal" class="btn-confirm center-btn btn-shake">CONFIRMAR MISIÓN</button>
+        </div>
+    </section>
+
+    <div id="rsvpModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="caption">REGISTRO DE AGENTES</div>
+            <form id="weddingForm" class="comic-form">
+                <div class="form-group">
+                    <label>NOMBRE DEL AGENTE:</label>
+                    <input type="text" name="name" required placeholder="Ej. Peter Parker">
+                </div>
+                <div class="form-group">
+                    <label>¿CUÁNTOS HÉROES VIENEN?:</label>
+                    <input type="number" name="guests" min="1" value="1" max="2" required>
+                </div>
+                <div class="form-group">
+                    <label>ESTADO:</label>
+                    <select name="message">
+                        <option value="Confirmado">¡ACEPTO LA MISIÓN!</option>
+                        <option value="No asistirá">UN VILLANO ME DETIENE</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-confirm">ENVIAR TRANSMISIÓN</button>
+            </form>
+            <div id="successMsg" style="display:none; text-align:center; padding: 20px;">
+                <h2 style="color:var(--marvel-red); font-family: 'Bangers', cursive; font-size: 2.5rem; margin: 0;">¡TRANSMISIÓN RECIBIDA!</h2>
+                <p class="comic-text-bold" style="font-size: 1.2rem; margin-top: 10px;">Tus coordenadas han sido registradas en el Cuartel General.</p>
+                <div style="border-top: 2px dashed black; margin: 20px 0;"></div>
+                <p style="font-family: 'Bangers', cursive; letter-spacing: 1px;">NOS VEMOS EN EL CAMPO DE BATALLA</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

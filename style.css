@@ -1,0 +1,361 @@
+/* 1. VARIABLES Y BASES */
+:root {
+    --marvel-red: #ed1d24;
+    --marvel-blue: #004a99;
+    --waze-blue: #33ccff;
+}
+
+body {
+    background-color: #e5e5e5;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    background-image: radial-gradient(#bcbcbc 15%, transparent 16%);
+    background-size: 20px 20px;
+}
+
+/* Bloqueo de scroll para la introducción */
+.no-scroll {
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* 2. PANTALLA DE INICIO (BOTÓN INICIAL) */
+.start-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: black;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.start-content .onomatopoeia {
+    color: #ffde00;
+    font-size: 5.5rem;
+    font-family: 'Bangers', cursive;
+    margin-bottom: 30px;
+    text-shadow: 5px 5px 0px var(--marvel-red);
+    letter-spacing: 3px;
+}
+
+/* Botón Marvel Clásico Mejorado */
+.btn-start-marvel {
+    background-color: var(--marvel-red);
+    color: white;
+    font-family: 'Bangers', cursive;
+    font-size: 2.8rem;
+    padding: 20px 60px;
+    border: 6px solid white;
+    outline: 4px solid black;
+    cursor: pointer;
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.5);
+    transition: transform 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.btn-start-marvel:hover {
+    transform: scale(1.1);
+    background-color: #ff0000;
+}
+
+.comic-text-mini {
+    color: white;
+    font-family: 'Bangers', cursive;
+    margin-top: 30px;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    opacity: 0.8;
+}
+
+/* 3. CONTENEDOR DE VIDEO (INTRO) */
+.portada-video {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    z-index: 100;
+}
+
+.video-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#bgVideo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: filter 1.5s ease;
+}
+
+/* 4. PORTADA FINAL (POST-VIDEO) ESTILO MARVEL */
+.header-content-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 110;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    opacity: 0; /* JS lo activa al final */
+    pointer-events: none;
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Clase que JS aplica al terminar el video */
+.portada-finalizada {
+    background-color: var(--marvel-red) !important;
+}
+
+.header-content-overlay h1 {
+    font-size: clamp(2rem, 6vw, 4rem);
+    color: white;
+    text-shadow: 6px 6px 0px black;
+    font-family: 'Bangers', cursive;
+    margin: 0;
+    line-height: 0.9;
+}
+
+.header-content-overlay h2 {
+    font-size: clamp(4rem, 12vw, 7rem);
+    color: #ffffff;
+    text-shadow: 7px 7px 0px black;
+    font-family: 'Bangers', cursive;
+    margin-top: 10px;
+}
+
+.scroll-msg {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: white;
+    font-family: 'Bangers', cursive;
+    text-shadow: 5px 5px 0px black;
+    margin-top: 30px;
+}
+
+/* 5. ESTRUCTURA DE SECCIONES (OCULTAS DURANTE VIDEO) */
+.block-section {
+    width: 95%;
+    max-width: 800px;
+    margin: 60px auto;
+}
+
+/* Clase para PC: oculta contenido mientras el video corre */
+.section-hidden {
+    display: none;
+}
+
+.comic-subgrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+/* 6. PANELES Y EFECTOS */
+.panel {
+    background: white;
+    border: 5px solid black;
+    position: relative;
+    box-shadow: 12px 12px 0px rgba(0,0,0,0.15);
+    opacity: 0; 
+    transform: translateY(30px) rotate(-1.5deg);
+    transition: all 0.6s ease-out;
+}
+
+.panel:nth-child(even) { transform: translateY(30px) rotate(1.5deg); }
+.panel.reveal { opacity: 1; transform: translateY(0) rotate(inherit); }
+.panel.wide { grid-column: span 2; }
+.panel.tall { grid-row: span 2; }
+
+.panel img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    display: block; 
+}
+
+/* Bocadillos */
+.bubble {
+    position: absolute;
+    background: white;
+    border: 3px solid black;
+    padding: 10px 15px;
+    font-family: 'Bangers', cursive;
+    border-radius: 25px;
+    z-index: 50;
+    box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
+    min-width: 100px;
+    text-align: center;
+}
+.bubble.left { top: -25px; left: 20px; }
+.bubble.right { bottom: -15px; right: 20px; }
+
+/* Captions amarillos */
+.caption {
+    background: #ffde00;
+    border: 3px solid black;
+    font-family: 'Bangers', cursive;
+    padding: 5px 15px;
+    position: absolute;
+    top: -15px; left: 15px;
+    z-index: 60;
+    transform: rotate(-3deg);
+}
+.caption.top-right { left: auto; right: 15px; }
+
+/* 7. TEMPORIZADOR Y UBICACIÓN */
+.timer-block { 
+    background: #111 !important; 
+    color: #ff3333; 
+    padding: 40px 20px; 
+    text-align: center; 
+}
+
+.timer-display { 
+    display: flex; 
+    justify-content: space-around; 
+    font-family: 'Bangers', cursive; 
+    font-size: 2.5rem; 
+}
+
+.time-box small { display: block; font-size: 0.8rem; color: white; }
+
+.location-panel { padding: 50px 40px !important; }
+.loc-container { display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+.loc-text { flex: 2; border-left: 5px solid var(--marvel-red); padding-left: 20px; text-align: left; }
+.loc-text h3 { font-family: 'Bangers', cursive; font-size: 2.2rem; margin: 0; }
+
+.loc-buttons { flex: 1; display: flex; flex-direction: column; gap: 15px; max-width: 250px; width: 100%; }
+
+.btn-nav {
+    font-family: 'Bangers', cursive;
+    font-size: 1.1rem;
+    padding: 12px;
+    text-align: center;
+    border: 3px solid black;
+    text-decoration: none;
+    box-shadow: 4px 4px 0px black;
+    transition: all 0.2s;
+}
+.btn-maps { background: var(--marvel-blue); color: white; }
+.btn-waze { background: var(--waze-blue); color: black; }
+
+/* 8. BOTÓN CONFIRMACIÓN (POW!) */
+
+/* El panel blanco con borde negro */
+.rsvp-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;    /* CENTRA TODO EL CONTENIDO INTERNO (¡POW!, TEXTO, BOTÓN) */
+    text-align: center;
+    padding: 40px;
+    background: white;
+    border: 5px solid black;
+    box-shadow: 15px 15px 0px rgba(0,0,0,0.2);
+    width: 90%;             /* Responsive en móviles */
+    max-width: 800px;       /* Tamaño ideal en PC */
+}
+
+/* El botón con la animación */
+.center-btn {
+    display: inline-block;
+    margin-top: 20px;       /* Espacio respecto al texto de arriba */
+}
+
+.btn-confirm {
+    background: var(--marvel-red);
+    align-items: center;
+    align-content: center;
+    color: white;
+    border: 5px solid black;
+    padding: 15px 30px;
+    font-family: 'Bangers', cursive;
+    font-size: 1.8rem;
+    cursor: pointer;
+    box-shadow: 6px 6px 0px black;
+}
+
+.btn-shake { animation: shake 4s infinite; }
+
+@keyframes shake {
+    0%, 90% { transform: scale(1); }
+    92% { transform: scale(1.1) rotate(3deg); }
+    94% { transform: scale(1.1) rotate(-3deg); }
+    96% { transform: scale(1.1) rotate(3deg); }
+    98% { transform: scale(1.1) rotate(-3deg); }
+    100% { transform: scale(1); }
+}
+
+/* 9. MODAL Y FORMULARIO */
+.modal {
+    display: none; 
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.85);
+    z-index: 9999;
+}
+.modal-content {
+    background: white;
+    margin: 10% auto;
+    padding: 35px;
+    border: 6px solid black;
+    width: 90%;
+    max-width: 450px;
+    position: relative;
+}
+.close { position: absolute; top: 5px; right: 15px; font-size: 35px; cursor: pointer; }
+
+.comic-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra todos los elementos del form, incluido el botón */
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    font-family: 'Bangers', cursive;
+    font-size: 1.2rem; /* Un poco más grande para legibilidad */
+    color: black;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.comic-form input, .comic-form select {
+    border: 3px solid black;
+    padding: 12px;
+    font-family: 'Open Sans', sans-serif; /* Texto de respuesta más limpio */
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+}
+
+/* 10. RESPONSIVE MÓVIL */
+@media (max-width: 768px) {
+    .comic-subgrid, .loc-container { grid-template-columns: 1fr; flex-direction: column; }
+    .panel.wide { grid-column: span 1; }
+    .loc-text { border-left: none; border-bottom: 3px solid var(--marvel-red); padding: 0 0 15px 0; text-align: center; }
+    .loc-buttons { max-width: 100%; }
+    .start-content .onomatopoeia { font-size: 3.5rem; }
+    .btn-start-marvel { font-size: 1.8rem; padding: 15px 30px; }
+}
