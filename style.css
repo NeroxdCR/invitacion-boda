@@ -228,25 +228,56 @@ body {
 .timer-block { 
     background: #111 !important; 
     color: #ff3333; 
-    padding: 40px 20px; 
-    text-align: center; 
+    padding: 40px 10px; /* Reducimos padding lateral */
+    text-align: center;
+    border-top: 4px solid black;
+    border-bottom: 4px solid black;
 }
 
 .timer-display { 
     display: flex; 
-    justify-content: space-around; 
+    justify-content: center; /* Mejor center que space-around para controlar el gap */
+    gap: 40px; 
     font-family: 'Bangers', cursive; 
-    font-size: 2.5rem; 
+    font-size: 2.5rem;
+    width: 100%;
 }
 
-.time-box small { display: block; font-size: 0.8rem; color: white; }
+.time-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-.location-panel { padding: 50px 40px !important; }
-.loc-container { display: flex; align-items: center; justify-content: space-between; gap: 30px; }
-.loc-text { flex: 2; border-left: 5px solid var(--marvel-red); padding-left: 20px; text-align: left; }
+.location-panel { 
+    padding: 30px 20px !important; /* Reducimos padding para ganar espacio */
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.loc-container { 
+    display: flex; 
+    flex-direction: row; /* En PC se mantiene lateral */
+    align-items: center; 
+    justify-content: space-between; 
+    gap: 20px; 
+}
+
+.loc-text { 
+    flex: 1; 
+    min-width: 0; /* Evita que el texto empuje hacia afuera */
+    border-left: 5px solid var(--marvel-red); 
+    padding-left: 15px; 
+}
 .loc-text h3 { font-family: 'Bangers', cursive; font-size: 2.2rem; margin: 0; }
 
-.loc-buttons { flex: 1; display: flex; flex-direction: column; gap: 15px; max-width: 250px; width: 100%; }
+.loc-buttons { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 10px; 
+    width: 100%; 
+    max-width: 200px; /* Limitamos ancho en PC */
+}
 
 .btn-nav {
     font-family: 'Bangers', cursive;
@@ -397,7 +428,7 @@ body {
         overflow: visible; /* Asegura que las rotaciones no se corten */
     }
 
-    .comic-subgrid, .loc-container { 
+    .comic-subgrid { 
         grid-template-columns: 1fr; 
         flex-direction: column; 
         gap: 20px;
@@ -422,23 +453,65 @@ body {
         max-height: 400px; /* Evita que una imagen sea eterna hacia abajo */
     }
 
-    /* Ajustes de ubicación */
+    /* Forzamos que el contenedor de ubicación sea vertical */
+    .loc-container { 
+        flex-direction: column !important; 
+        align-items: stretch !important; 
+        text-align: center;
+    }
+
     .loc-text { 
         border-left: none; 
-        border-bottom: 3px solid var(--marvel-red); 
-        padding: 0 0 15px 0; 
-        text-align: center; 
+        border-bottom: 4px solid var(--marvel-red); 
+    }
+        
+
+    .loc-buttons { 
+        max-width: 100% !important; /* Los botones ocupan todo el ancho */
+        width: 100%; 
     }
     
-    .loc-buttons { 
-        max-width: 100%; 
-        width: 100%;
+
+    .btn-nav {
+        width: 100%; /* Botones grandes y fáciles de tocar */
+        box-sizing: border-box;
+    }
+
+    /* Aseguramos que el panel no se estire */
+    .location-panel {
+        width: 100% !important;
+        margin: 0 auto;
     }
 
     .caption {
         font-size: 1rem;     /* Un poco más pequeño en móvil */
         left: 10px;          /* Más pegado al borde izquierdo */
         top: -15px;          /* Menos elevado */
+    }
+
+    .timer-display { 
+        font-size: 2.2rem; /* Tamaño suficiente para que quepa en una línea */
+        gap: 15px;         /* Reducimos el espacio entre cajas */
+        margin: 25px 0px 25px 15px; 
+    }
+
+    .time-box small { 
+        font-size: 1rem; /* Etiquetas (días, horas) más pequeñas */
+        letter-spacing: 1px;
+    }
+    
+    .timer-block {
+        padding: 0 0 15px 0;  /* Menos espacio arriba/abajo para que no sea eterno */
+    }
+
+    .comic-text-mini{
+        padding: 3px;
+    }
+
+    .footer-comic{
+        word-wrap: break-word;
+        max-width: 100vw;
+        font-size: 1rem;
     }
 
     /* Ajustes de tipografía para pantallas pequeñas */
@@ -454,9 +527,11 @@ body {
     text-align: center;
     font-family: 'Bangers', cursive;
     color: #666;
-    font-size: 2.5rem;
+    font-size: 2rem;
     letter-spacing: 2px;
     margin-top: 40px;    /* Espacio respecto al panel de arriba */
     margin-bottom: 60px; /* Espacio respecto al final de la pantalla */
     opacity: 0.7;
+    word-wrap: break-word;
+    max-width: 100vw;
 }
