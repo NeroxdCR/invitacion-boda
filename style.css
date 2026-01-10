@@ -216,9 +216,11 @@ body {
     font-family: 'Bangers', cursive;
     padding: 5px 15px;
     position: absolute;
-    top: -15px; left: 15px;
+    top: -20px; left: 20px;
     z-index: 60;
     transform: rotate(-3deg);
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+    white-space: nowrap; /* Evita que el texto se rompa en dos líneas */
 }
 .caption.top-right { left: auto; right: 15px; }
 
@@ -267,7 +269,7 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 30px 20px; /* Menos padding lateral en móvil */
+    padding: 40px 20px; /* Menos padding lateral en móvil */
     background: white;
     border: 5px solid black;
     box-shadow: 12px 12px 0px rgba(0,0,0,0.2);
@@ -275,6 +277,8 @@ body {
     max-width: 700px;
     margin: 20px auto;        /* Centrado */
     box-sizing: border-box; /* Fundamental para que el borde no sume ancho */
+    overflow: visible !important;
+
 }
 
 /* El botón con la animación */
@@ -324,15 +328,25 @@ body {
 
 .modal-content {
     background: white;
-    /* Eliminamos el margin: 10% auto */
-    padding: 25px;
+    padding: 40px 25px 25px 25px; /* Aumentamos el padding superior (40px) */
     border: 6px solid black;
-    width: 85%;      /* Un poco más angosto para que respire en móvil */
+    width: 85%;
     max-width: 400px;
-    position: relative;
+    position: relative; /* Esto es vital para que el caption sepa dónde ubicarse */
     box-sizing: border-box;
-    max-height: 90vh; /* Evita que el modal sea más alto que la pantalla */
-    overflow-y: auto; /* Permite scroll dentro del modal si es necesario */
+    overflow: visible !important; /* Permite que el caption "flote" hacia afuera si es necesario */
+}
+
+/* Esto asegura que el caption amarillo se vea bien dentro del modal */
+.modal-content .caption {
+    position: absolute;
+    top: -15px;        /* Lo eleva sobre el borde negro */
+    left: 20px;        /* Lo pega a la izquierda */
+    display: block;    /* Fuerza su visibilidad */
+    z-index: 10000;    /* Lo pone por encima de todo */
+    background: #ffde00;
+    border: 3px solid black;
+    white-space: nowrap;
 }
 
 /* Clase que usaremos en JS para bloquear el scroll del fondo */
@@ -419,6 +433,12 @@ body {
     .loc-buttons { 
         max-width: 100%; 
         width: 100%;
+    }
+
+    .caption {
+        font-size: 1rem;     /* Un poco más pequeño en móvil */
+        left: 10px;          /* Más pegado al borde izquierdo */
+        top: -15px;          /* Menos elevado */
     }
 
     /* Ajustes de tipografía para pantallas pequeñas */
