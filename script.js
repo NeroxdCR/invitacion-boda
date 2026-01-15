@@ -104,8 +104,29 @@ window.onclick = (e) => {
     if (e.target == modal) closeRSVP(); 
 }
 
+// 5.1 Form campos auto
+const guestCountInput = document.getElementById('guestCount');
+const dynamicContainer = document.getElementById('dynamicNamesContainer');
+
+guestCountInput.addEventListener('input', () => {
+    const count = parseInt(guestCountInput.value) || 1;
+    dynamicContainer.innerHTML = ''; // Limpiar campos anteriores
+
+    for (let i = 1; i <= count; i++) {
+        const div = document.createElement('div');
+        div.className = 'form-group';
+        div.style.marginBottom = "15px";
+        
+        div.innerHTML = `
+            <label>NOMBRE DEL AGENTE ${i}:</label>
+            <input type="text" name="name_${i}" required placeholder="Nombre completo" class="comic-input-dynamic">
+        `;
+        dynamicContainer.appendChild(div);
+    }
+});
+
 // 6. INTEGRACIÓN CON GOOGLE SHEETS
-const scriptURL = 'https://script.google.com/macros/s/AKfycby0Wa-v-EGbyu0cyvC2t0O8i-7zKviQAOsjjLBqIQF-tZ6sYuRVtyqLOoYymEcyydgs/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbysrvoK3eMHMHEWotPyMLVwzdhbteBW0bN4w7jl9qm8IcGRaTTxZnbWXA3yk7wvIG32/exec';
 const form = document.getElementById('weddingForm');
 const successMsg = document.getElementById('successMsg');
 

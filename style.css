@@ -292,7 +292,57 @@ body {
 .btn-maps { background: var(--marvel-blue); color: white; }
 .btn-waze { background: var(--waze-blue); color: black; }
 
-/* 8. BOTÓN CONFIRMACIÓN (POW!) */
+/* 8. SECCIÓN DRESS CODE */
+.dresscode-panel {
+    background: white;
+    padding: 30px;
+    border: 6px solid black;
+    box-shadow: 12px 12px 0px rgba(0,0,0,0.25);
+    display: flex; /* Para poner la imagen y el texto uno al lado del otro */
+    gap: 30px; /* Espacio entre la imagen y el texto */
+    align-items: center; /* Centra verticalmente la imagen y el texto */
+    position: relative;
+    margin-top: 50px; /* Para que el caption amarillo tenga espacio */
+}
+
+.dresscode-image {
+    flex: 1; /* Ocupa el espacio disponible */
+    max-width: 50%; /* La imagen no debe ser más de la mitad */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dresscode-image img {
+    max-width: 100%;
+    height: auto;
+    border: 3px solid #ccc; /* Un pequeño borde para la imagen */
+    box-shadow: 6px 6px 0px rgba(0,0,0,0.15);
+    border-radius: 8px;
+}
+
+.dresscode-text {
+    flex: 1; /* Ocupa el espacio disponible */
+    padding-left: 15px; /* Un poco de aire desde la imagen */
+    border-left: 4px solid var(--marvel-red); /* Línea roja estilo cómic */
+}
+
+.dresscode-text h2 {
+    font-family: 'Bangers', cursive;
+    color: var(--marvel-red);
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+    text-shadow: 3px 3px 0px rgba(0,0,0,0.1);
+}
+
+.dresscode-text p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+/* 9. BOTÓN CONFIRMACIÓN (POW!) */
 
 /* El panel blanco con borde negro */
 .rsvp-panel {
@@ -419,6 +469,37 @@ body {
     box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
 }
 
+/*Campos dinamicos*/
+.comic-input-dynamic {
+    border: 3px solid black;
+    padding: 12px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#dynamicNamesContainer {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Footer */
+.footer-comic {
+    text-align: center;
+    font-family: 'Bangers', cursive;
+    color: #666;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    margin-top: 40px;    /* Espacio respecto al panel de arriba */
+    margin-bottom: 60px; /* Espacio respecto al final de la pantalla */
+    opacity: 0.7;
+    word-wrap: break-word;
+    max-width: 100vw;
+}
+
 /* 10. RESPONSIVE MÓVIL */
 @media (max-width: 768px) {
     /* Ajuste de contenedores principales */
@@ -514,24 +595,41 @@ body {
         font-size: 1rem;
     }
 
+    .dresscode-panel {
+        flex-direction: column; /* La imagen y el texto se apilan en vertical */
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .dresscode-image {
+        max-width: 100%; /* La imagen ocupa todo el ancho */
+        margin-bottom: 15px;
+    }
+    
+    .dresscode-image img {
+        border: 2px solid #ccc;
+        box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+    }
+
+    .dresscode-text {
+        border-left: none; /* Quitamos la línea roja lateral */
+        border-bottom: 4px solid var(--marvel-red); /* Ponemos una línea roja inferior */
+        padding-left: 0;
+        padding-bottom: 20px;
+        text-align: center;
+    }
+
+    .dresscode-text h2 {
+        font-size: 2.2rem;
+    }
+    .dresscode-text p {
+        font-size: 1rem;
+    }
+
     /* Ajustes de tipografía para pantallas pequeñas */
     .start-content .onomatopoeia { font-size: 3rem; }
     .btn-start-marvel { font-size: 1.6rem; padding: 12px 25px; }
     
     .header-content-overlay h2 { font-size: 3.5rem; }
     .header-content-overlay h1 { font-size: 1.8rem; }
-}
-
-/* Footer */
-.footer-comic {
-    text-align: center;
-    font-family: 'Bangers', cursive;
-    color: #666;
-    font-size: 2rem;
-    letter-spacing: 2px;
-    margin-top: 40px;    /* Espacio respecto al panel de arriba */
-    margin-bottom: 60px; /* Espacio respecto al final de la pantalla */
-    opacity: 0.7;
-    word-wrap: break-word;
-    max-width: 100vw;
 }

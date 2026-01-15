@@ -78,7 +78,7 @@
                 <div class="time-box"><span id="minutes">00</span><small>MIN</small></div>
                 <div class="time-box"><span id="seconds">00</span><small>SEG</small></div>
             </div>
-            <div class="bubble right">FECHA DE LA BODA: 20 de Marzo, 2026</div>
+            <div class="bubble right">FECHA DE LA BODA: 20 de Marzo, 2026 HORA: 3:30 PM</div>
         </div>
     </section>
 
@@ -99,6 +99,30 @@
         </div>
     </section>
 
+    <section class="block-section section-hidden">
+        <div class="block-section">
+            <div class="caption">¡CÓDIGO DE VESTIMENTA!</div>
+            <div class="dresscode-panel">
+                <div class="dresscode-image">
+                    <img src="assets/imagenes/imagen7.png" alt="Dress Code Superhéroes">
+                </div>
+                <div class="dresscode-text">
+                    <h2>¡PROTOCOLO DE GALA!</h2>
+                    <p>Nuestra misión requiere la máxima elegancia. El código de vestimenta es:</p>
+                    <h2>FORMAL</h2>    
+                    <div style="background: #fff3f3; border: 2px dashed #000; padding: 10px; margin: 15px 0;">
+                        <p style="font-weight: bold; margin-bottom: 5px;">⚠️ Para no confundir a nuestros radares, solicitamos amablemente <strong>NO utilizar</strong> los siguientes colores:</p>
+                        <p style="letter-spacing: 1px; font-family: 'Bangers', cursive; font-size: 1.2rem;">
+                            BLANCO | NEGRO | VINO
+                        </p>
+                    </div>
+
+                    <p>¡Tu presencia es nuestro mejor superpoder!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="block-section rsvp-area section-hidden">
         <div class="panel rsvp-panel">
             <div class="onomatopoeia" style="font-family: 'Bangers', cursive; font-size: 4rem; color: var(--marvel-red); text-shadow: 3px 3px 0px black;">¡POW!</div>
@@ -113,18 +137,21 @@
             <div class="caption">REGISTRO DE AGENTES</div>
             <form id="weddingForm" class="comic-form">
                 <div class="form-group">
-                    <label>NOMBRE DEL AGENTE:</label>
-                    <input type="text" name="name" required placeholder="Ej. Peter Parker">
-                </div>
-                <div class="form-group">
                     <label>¿CUÁNTOS HÉROES VIENEN?:</label>
-                    <input type="number" name="guests" min="1" value="1" max="2" required>
+                    <input type="number" id="guestCount" name="guests" min="1" value="1" max="4" required>
+                </div>
+
+                <div id="dynamicNamesContainer">
+                    <div class="form-group">
+                        <label>NOMBRE DEL AGENTE 1:</label>
+                        <input type="text" name="name_1" required placeholder="Nombre completo">
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>ESTADO:</label>
                     <select name="message">
-                        <option value="Confirmado">¡ACEPTO LA MISIÓN!</option>
-                        <option value="No asistirá">UN VILLANO ME DETIENE</option>
+                        <option value="Confirmado">¡ACEPTAMOS LA MISIÓN!</option>
+                        <option value="No asistirá">UN VILLANO NOS DETIENE</option>
                     </select>
                 </div>
                 <button type="submit" class="btn-confirm">ENVIAR TRANSMISIÓN</button>
