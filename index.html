@@ -138,7 +138,12 @@
             <form id="weddingForm" class="comic-form">
                 <div class="form-group">
                     <label>¿CUÁNTOS HÉROES VIENEN?:</label>
-                    <input type="number" id="guestCount" name="guests" min="1" value="1" max="4" required>
+                    <select id="guestCount" name="guests" class="comic-select">
+                        <option value="1">1 AGENTE</option>
+                        <option value="2">2 AGENTES</option>
+                        <option value="3">3 AGENTES</option>
+                        <option value="4">4 AGENTES</option>
+                    </select>
                 </div>
 
                 <div id="dynamicNamesContainer">

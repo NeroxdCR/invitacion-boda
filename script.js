@@ -108,13 +108,13 @@ window.onclick = (e) => {
 const guestCountInput = document.getElementById('guestCount');
 const dynamicContainer = document.getElementById('dynamicNamesContainer');
 
-guestCountInput.addEventListener('input', () => {
-    const count = parseInt(guestCountInput.value) || 1;
-    dynamicContainer.innerHTML = ''; // Limpiar campos anteriores
+guestCountInput.addEventListener('change', () => {
+    const count = parseInt(guestCountInput.value);
+    dynamicContainer.innerHTML = ''; 
 
     for (let i = 1; i <= count; i++) {
         const div = document.createElement('div');
-        div.className = 'form-group';
+        div.className = 'form-group animate-flicker'; // Opcional: añadir una pequeña animación
         div.style.marginBottom = "15px";
         
         div.innerHTML = `
