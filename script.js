@@ -106,24 +106,51 @@ window.onclick = (e) => {
 
 // 5.1 Form campos auto
 const guestCountInput = document.getElementById('guestCount');
+const statusSelect = document.getElementById('statusSelect');
 const dynamicContainer = document.getElementById('dynamicNamesContainer');
 
 guestCountInput.addEventListener('change', () => {
     const count = parseInt(guestCountInput.value);
-    dynamicContainer.innerHTML = ''; 
+    
+    // 1. Actualizar campos de nombres
+    actualizarCamposNombres(count);
+    
+    // 2. Actualizar textos del Estado
+    actualizarOpcionesEstado(count);
+});
 
+function actualizarOpcionesEstado(cantidad) {
+    statusSelect.innerHTML = ''; // Limpiamos opciones actuales
+
+    if (cantidad === 1) {
+        // Opciones en SINGULAR
+        statusSelect.innerHTML = `
+            <option value="Confirmado">¡ACEPTO LA MISIÓN!</option>
+            <option value="No asistirá">UN VILLANO ME DETIENE</option>
+        `;
+    } else {
+        // Opciones en PLURAL (para 2 a 4 agentes)
+        statusSelect.innerHTML = `
+            <option value="Confirmado">¡ACEPTAMOS LA MISIÓN!</option>
+            <option value="No asistirá">LOS VILLANOS NOS DETIENEN</option>
+        `;
+    }
+}
+
+// Función que ya tenías para los nombres, ahora encapsulada
+function actualizarCamposNombres(count) {
+    dynamicContainer.innerHTML = ''; 
     for (let i = 1; i <= count; i++) {
         const div = document.createElement('div');
-        div.className = 'form-group animate-flicker'; // Opcional: añadir una pequeña animación
+        div.className = 'form-group';
         div.style.marginBottom = "15px";
-        
         div.innerHTML = `
             <label>NOMBRE DEL AGENTE ${i}:</label>
             <input type="text" name="name_${i}" required placeholder="Nombre completo" class="comic-input-dynamic">
         `;
         dynamicContainer.appendChild(div);
     }
-});
+}
 
 // 6. INTEGRACIÓN CON GOOGLE SHEETS
 const scriptURL = 'https://script.google.com/macros/s/AKfycbysrvoK3eMHMHEWotPyMLVwzdhbteBW0bN4w7jl9qm8IcGRaTTxZnbWXA3yk7wvIG32/exec';
